@@ -63,7 +63,7 @@ class MovieSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Movie
-        fields = ['id', 'movie_image', 'movie_name', 'year', 'avg_rating']
+        fields = ['id', 'movie_image', 'movie_name', 'year', 'avg_rating', 'status_movie']
 
     def get_avg_rating(self, obj):
         return obj.get_avg_rating()
@@ -145,6 +145,7 @@ class  MomentsSerializers(serializers.ModelSerializer):
 class RatingSerializers(serializers.ModelSerializer):
     user = UseProfileSimpleSerializers(read_only=True)
 
+
     class Meta:
         model = Rating
         fields = ['id', 'user', 'stars', 'text', 'created_date']
@@ -188,15 +189,6 @@ class FavoriteSerializers(serializers.ModelSerializer):
     class Meta:
         model = Favorite
         fields = ['id', 'user', 'items']
-
-
-
-
-
-
-
-
-
 
 
 class HistorySerializers(serializers.ModelSerializer):

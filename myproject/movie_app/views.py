@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from rest_framework.decorators import permission_classes
 
 from .models import (UserProfile, Country, Director,
                      Actor, Genre, Movie,
@@ -16,12 +17,13 @@ from .serializers import (UserSerializer, UseProfileSerializers,
                      FavoriteMovieSerializers, HistorySerializers,
                      LoginSerializer)
 
-from rest_framework import viewsets, generics, status
+from rest_framework import viewsets, generics, status, permissions
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
+from .permissions import CheckRating, CheckStatus
 
 
 class RegisterView(generics.CreateAPIView):
@@ -122,6 +124,7 @@ class  MovieListAPIView(generics.ListAPIView):
 class MovieDetailListAPIView(generics.RetrieveAPIView):
     queryset = Movie.objects.all()
     serializer_class = MovieDetailSerializers
+    # permission_classes = [CheckStatus]
 
 
 class  MovieLanguagesListAPIView(generics.ListAPIView):
@@ -137,6 +140,7 @@ class  MomentsListAPIView(generics.ListAPIView):
 class  RatingViewSet(viewsets.ModelViewSet):
     queryset = Rating.objects.all()
     serializer_class = RatingSerializers
+    permission_classes = [permissions.IsAuthenticated,CheckRating]
 
 
 class FavoriteViewSet(generics.RetrieveAPIView):

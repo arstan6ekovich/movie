@@ -6,9 +6,10 @@ class MovieFilter(FilterSet):
         model = Movie
         fields = {
             'country':['exact'],
-            'year':['gt', 'lt'],
             'genre': ['exact'],
-            'status_movie': ['exact'],
             'actor': ['exact'],
             'director': ['exact'],
+            'status_movie': ['exact'],
+            'year': ['gt', 'lt'],
+
         }
