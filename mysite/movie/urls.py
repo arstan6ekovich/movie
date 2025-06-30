@@ -14,11 +14,9 @@ from .views import (UserProfileViewSet, RatingViewSet,
 from rest_framework import routers
 
 router = routers.SimpleRouter()
+
 router.register(r'user', UserProfileViewSet, basename='users')
 router.register(r'rating', RatingViewSet, basename='ratings')
-
-
-
 
 urlpatterns = [
     path('', include(router.urls)),
@@ -39,6 +37,6 @@ urlpatterns = [
     path('language/', MovieLanguagesListAPIView.as_view()),
     path('history/', HistoryListAPIView.as_view()),
     path('favorite/', FavoriteViewSet.as_view(), name='favorite_detail'),
-    path('favorite_movie/', FavoriteMovieViewSet.as_view({'get':'list', 'post':'create'})),
-    path('favorite_movie/<int:pk>/', FavoriteMovieViewSet.as_view({'put':'update','delete':'destroy'})),
+    path('favorite_movie/', FavoriteMovieViewSet.as_view({'get': 'list', 'post': 'create'})),
+    path('favorite_movie/<int:pk>/', FavoriteMovieViewSet.as_view({'put': 'update', 'delete': 'destroy'})),
 ]
