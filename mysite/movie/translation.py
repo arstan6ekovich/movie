@@ -1,5 +1,5 @@
 from .models import Director, Actor, Genre, Movie
-from modeltranslation.translator import TranslationOptions,register
+from modeltranslation.translator import TranslationOptions, register
 
 @register(Director)
 class DirectorTranslationOptions(TranslationOptions):
