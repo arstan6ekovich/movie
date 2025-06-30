@@ -1,12 +1,8 @@
 from rest_framework import serializers
-
 from .models import (UserProfile, Country, Director,
                      Actor, Genre, Movie,
                      MovieLanguages, Moments, Rating,
                      Favorite, FavoriteMovie, History)
-
-
-
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 
